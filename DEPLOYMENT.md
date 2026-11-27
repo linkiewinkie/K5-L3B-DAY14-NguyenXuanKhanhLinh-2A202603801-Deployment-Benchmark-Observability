@@ -2,11 +2,15 @@
 
 ## Nền tảng và trạng thái
 
-Blueprint Render đã được cấu hình tại [06-lab-complete/render.yaml](06-lab-complete/render.yaml). Triển khai public đang chờ thao tác trên tài khoản cloud theo phạm vi đã chọn. URL public và ba ảnh deploy sẽ được điền sau khi chạy trên Render.
+Agent Part 6 đang chạy trên Render tại [https://day14-agent-scfb.onrender.com](https://day14-agent-scfb.onrender.com/health). Blueprint `day14-lab` triển khai commit `72c353d` từ nhánh `main`. Dịch vụ Docker `day14-agent` ở trạng thái **Live** và dịch vụ Key Value `day14-redis` ở trạng thái **Available**. Hai dịch vụ chạy ở vùng Oregon.
+
+- [Dashboard Blueprint](screenshots/dashboard.png)
+- [Dịch vụ Live](screenshots/running.png)
+- [Kết quả kiểm tra API public](screenshots/test.png)
 
 ## Thiết lập trên Render
 
-1. Trong **New → Blueprint**, chọn repo bài lab và đặt **Blueprint Path** thành `06-lab-complete/render.yaml`.
+1. Trong **New → Blueprint**, nhập URL public của repo bài lab và đặt **Blueprint Path** thành `06-lab-complete/render.yaml`.
 2. Blueprint tạo web service `day14-agent` từ Dockerfile trong `06-lab-complete/` và dịch vụ Key Value `day14-redis` cùng vùng. Render dùng đường dẫn `/health` để kiểm tra web service.
 3. Sau khi web service báo **Live**, sao chép URL HTTPS và chạy bốn lệnh bên dưới. Chụp trang tổng quan, trạng thái **Live** và kết quả kiểm tra vào `screenshots/dashboard.png`, `screenshots/running.png` và `screenshots/test.png`.
 
@@ -26,7 +30,16 @@ Blueprint Render đã được cấu hình tại [06-lab-complete/render.yaml](0
 
 ## Kiểm tra URL public
 
-Chạy trong Bash, nhập URL và API key từ dashboard khi được hỏi. Kết quả lần lượt phải là `200`, `200`, `401`, `200`.
+Bốn request thực tế được chạy ngày 27/11/2026 lúc 18:06 GMT+7.
+
+| Request | Mã HTTP |
+|---|---:|
+| `GET /health` | 200 |
+| `GET /ready` | 200 |
+| `POST /ask` thiếu API key | 401 |
+| `POST /ask` có API key hợp lệ | 200 |
+
+Để kiểm tra lại, chạy trong Bash và nhập URL cùng API key từ dashboard khi được hỏi.
 
 ```bash
 read -r -p 'URL HTTPS của agent: ' BASE

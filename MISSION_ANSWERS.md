@@ -76,7 +76,7 @@ Kiểm tra qua Nginx cho kết quả `GET /health → HTTP/1.1 200 OK` và `POST
 
 ### Exercises 3.1–3.2 — Railway và Render
 
-Cấu hình deploy cho agent Part 6 nằm trong [`06-lab-complete/`](06-lab-complete/). Chọn Render làm phương án chính. Phần cloud dừng ở cấu hình theo phạm vi đã chọn. URL public và ảnh deploy chờ lần chạy trên cloud. Xem [DEPLOYMENT.md](DEPLOYMENT.md) để biết Blueprint Path, biến môi trường và bốn lệnh kiểm tra.
+Agent Part 6 được triển khai bằng Blueprint Render `day14-lab` từ commit `72c353d`. URL public là `https://day14-agent-scfb.onrender.com`. Sau khi agent báo **Live** và Redis báo **Available**, bốn request kiểm tra lần lượt trả 200, 200, 401 và 200. Xem [DEPLOYMENT.md](DEPLOYMENT.md) để biết cấu hình, lệnh kiểm tra và ba ảnh minh chứng.
 
 | Cấu hình | Railway | Render |
 | --- | --- | --- |
@@ -193,5 +193,6 @@ Mục 12 của lần chạy này xác minh cấu hình triển khai. Kiểm th�
 | --- | --- | --- |
 | Làm lab Day 14 trong repo local, giữ nguyên Git | Đọc đề, soạn câu trả lời và hoàn thiện agent Part 6, Dockerfile, Compose và cấu hình deploy | Codex cài môi trường test, gọi các API mẫu, đo kích thước image bằng Docker, chạy stack ba replica và chạy bài chấm gốc. |
 | Thực hiện benchmark, eval và observability theo đề | Thêm histogram độ dài câu hỏi, bổ sung mục HPA và JWT từ kết quả eval, viết job CI và báo cáo | Codex chạy baseline trước khi sửa KB, chạy lại với quality gate và so hồi quy, tạo tải local và ghi số trực tiếp từ đầu ra JSON/CSV và UI. |
+| Triển khai agent từ repo GitHub đã push | Codex tạo Blueprint trên Render sau khi học viên đăng nhập | Codex xác minh cả hai dịch vụ, chạy bốn request trên URL public và lưu ảnh dashboard, trạng thái Live và kết quả HTTP. |
 
 Các lệnh kiểm tra và thu số liệu do Codex chạy trong workspace. Học viên có thể dùng lệnh trong tài liệu để tái lập và tự đối chiếu trước khi nộp.
